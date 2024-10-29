@@ -1,0 +1,104 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{  /* reszie webpage*/
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.3rem;
+}
+
+/* desk bar design */
+h1{
+    background-color: chocolate;
+    padding: 35px;
+}
+.desk{
+    background-color: black;
+    width: 30%;
+    padding:20px;
+    color: whitesmoke;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+    border-radius:1.5rem;
+    display: inline-block;
+    vertical-align: top;
+}
+h2{
+    background-color: chocolate;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+}
+h4{
+    color: chocolate;
+
+}
+.deskbtn{
+   padding: 7px 20px 7px 20px;
+   background-color: chocolate;
+   color: black;
+   cursor: pointer;
+   margin-top: 1.7rem;
+ 
+}
+/* popup effect */
+.popup{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    opacity: 0.7;
+    display: none;
+}
+/* button round  */
+.roundbtn{
+    font-size: 1.5rem;
+    padding: 30px;
+    border-radius: 100%;
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background-color: chocolate;
+    cursor: pointer;
+  
+}
+/* popup box */
+.popupbox{
+    width: 35%;
+    position: fixed;
+    left:30%;
+    top:30%;
+    background-color: chocolate;
+    color: black;
+    padding: 30px;
+    display: none;
+}
+.popupboxone{
+    width:100%;
+    background:transparent;
+    margin-bottom: 20px;
+    border: transparent;
+}
+.popupboxone::placeholder{
+    color: black;
+}
+.popupboxone:focus{
+   outline: none;
+}
+#box2{
+    margin-bottom: 30px;
+}
+#box1{
+    margin-top: 20px;
+}
+.popupbox button{
+    padding: 7px 20px 7px 20px;
+    background-color: black;
+    color: chocolate;
+    cursor: pointer;
+}

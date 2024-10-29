@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sty.css">
+    <title>bookskey</title>
+</head>
+<body>
+    <!-- desk design -->
+<h1>Bookskey</h1>
+<div id="outputbox">
+<div class="desk" id="deskcon">
+    <h2>The Forgotten Key</h2>
+    <br>
+    <h4>Sarah Monroe</h4>
+    <br>
+    <p> 
+        Emma had always loved the attic, with its dusty relics of the past and the faint smell of old books.
+        One evening, as the sun set behind the hills, she discovered a small, intricately carved box beneath
+        a pile of forgotten letters. Inside, nestled in velvet, lay a key. It was heavy, cold to the touch,
+        and unlike anything she had ever seen. Emma knew, with a certainty she couldn't explain, that this 
+        key would unlock more than just doors—it held the secrets of her family's long-buried history, 
+        waiting to be uncovered.
+    </p>
+
+        <button class="deskbtn" onclick="del(event)">delete</button>
+</div>
+</div>
+<!-- round button create -->
+ <button class="roundbtn" id="rbtn">+</button>
+ <!-- popup effect -->
+<div class="popup" id="popupone"></div>
+<!-- popupbox create -->
+ <div class="popupbox" id="popupboxone">
+    <h3>Add Book</h3>
+    <input type="text" class="popupboxone" placeholder="Book Name"  id="box1" cleare>
+    <input type="text" class="popupboxone" placeholder="Author Name" id="box2">
+    <textarea name="" id="box3" class="popupboxone" placeholder="Book Discription"></textarea>
+    <button id="additem">Add</button>
+    <button id="popcencel">cancel</button>
+ </div>
+
+ <script>
+    /* popup effect begin */
+var popup=document.getElementById("popupone")
+var popupbox=document.getElementById("popupboxone")
+var rbtn=document.getElementById("rbtn")
+
+
+rbtn.addEventListener("click",function(){
+    popup.style.display="block"
+    popupbox.style.display="block"   
+})
+
+var popcancel=document.getElementById("popcencel")
+popcancel.addEventListener("click",function(){
+    
+    popup.style.display="none"
+    popupbox.style.display="none"   
+})
+/*popup effect end */
+/* add book script */
+var additem=document.getElementById("additem")
+var box1=document.getElementById("box1")
+var box2=document.getElementById("box2")
+var box3=document.getElementById("box3")
+var outputbox=document.getElementById("outputbox")
+additem.addEventListener("click",function(event){
+    event.preventDefault()
+ var additem=document.createElement("div")
+additem.setAttribute("class","desk")
+    additem.innerHTML=`
+    <h2>${box1.value}</h2>
+    <br>
+    <h4>${box2.value}</h4>
+    <br>
+    <p>${box3.value}</p>
+    <button class="deskbtn" onclick="del(event)">delete</button>`
+    outputbox.append(additem)
+    popup.style.display="none"
+    popupbox.style.display="none"   
+})
+
+function del(event){
+    event.target.parentElement.remove()
+}
+
+</script>
+</body>
+</html>
