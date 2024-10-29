@@ -1,0 +1,66 @@
+<!-- html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colur chenge</title>
+</head>
+<body>
+    <nav class="frend">
+        <h1>colur chenge</h1>
+        <h2><a href="colurchenge.html">simple</a></h2>
+        <h3><a href="hex.html">hex</a></h3>
+    </nav>
+    <div class="bgcolur">
+        <h1>backgroundcolor: <div id="colurs">brown</div></h1>
+    </div>
+    <button id="cbtn">clickme</button>
+    <!-- css -->
+    <style>
+        body{
+            color: #abe;
+        }
+        .frend{
+            display: flex;
+            justify-content: space-evenly;
+            border: 3px solid black;
+        }
+        a{
+            text-decoration: none;
+            color:#abe;
+        }
+        .bgcolur{
+          position: fixed;
+          right: 50%;
+          top: 45%;
+        }
+        #cbtn{
+            padding: 7px 20px 7px 20px;
+            position: fixed;
+            top:55%;
+            left: 50%;
+            cursor: pointer;
+        }
+    </style>
+    <!-- java script -->
+    <script>
+        /* get elament */
+        let col=["red","blue","green","yellow","whitesmoke","black","cyan"]; /* inzulies value */
+        let cbtn=document.getElementById("cbtn");
+        let colurs=document.getElementById("colurs");
+
+        /* button click event */
+        cbtn.addEventListener("click",function(){
+           let a= document.body.style.backgroundColor=col[rand()];
+           colurs.textContent=a
+            
+        })
+        /* random num gentrate */
+        function rand(){
+           return Math.floor(Math.random()*col.length);
+        }
+    </script>
+    
+</body>
+</html>
