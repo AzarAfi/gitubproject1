@@ -42,7 +42,6 @@ const [listvalue2,setlistvalue2]=useState("");
 
 function additems(Actor,Movie){
   const id=list.length?list[list.length-1].id+1:1;
-  console.log(id)
   const newitems={id,see:false,Actor,Movie};
   const newaddlist=[...list,newitems]
   setList( newaddlist);
