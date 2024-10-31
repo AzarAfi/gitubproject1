@@ -3,41 +3,15 @@ import Content from "./Content"
 import Footer from "./Footer"
 import { useState } from "react";
 import Additems from "./Additems";
+import Searchitems from "./Searchitems";
+
+
 
 function App() {
-  const [list, setList] = useState([
-    {
-        id: 1,
-        Actor: "Vijai",
-        Movie: "GOAT",
-        see: true
-    },
-    {
-        id: 2,
-        Actor: "SK",
-        Movie: "Amaran",
-        see: true
-    },
-    {
-        id: 3,
-        Actor: "Ajith",
-        Movie: "Vida Muyarchi",
-        see: false
-    },
-    {
-        id: 4,  
-        Actor: "Dhanush",
-        Movie: "Raayan",
-        see: true
-    },    {
-        id: 5,  
-        Actor: "surya",
-        Movie: "kanguva",
-        see: false
-    }
-]);
+const [list, setList] = useState(JSON.parse(localStorage.getItem('totolist')));
 const [listvalue,setlistvalue]=useState("");
 const [listvalue2,setlistvalue2]=useState("");
+const [searchitem,setsearchitem]=useState("");
 
 
 function additems(Actor,Movie){
@@ -45,18 +19,19 @@ function additems(Actor,Movie){
   const newitems={id,see:false,Actor,Movie};
   const newaddlist=[...list,newitems]
   setList( newaddlist);
+  localStorage.setItem("totolist",JSON.stringify(newaddlist))
 }
 
 // 
 function handleChenge(id){
    let listitem=list.map((item)=> item.id===id ? {...item,see:!item.see}:item)
    setList(listitem)
-   localStorage.setItem("totolist",JSON.stringify(list))
+   localStorage.setItem("totolist",JSON.stringify(listitem))
 }
 function handleDelete(id){
     let listdel=list.filter((item)=> item.id!==id)
     setList(listdel)
-    localStorage.setItem("totolist",JSON.stringify(list))
+    localStorage.setItem("totolist",JSON.stringify(listdel))
 }
 
 function addNewItem(e){
@@ -78,13 +53,18 @@ function addNewItem(e){
     addNewItem={addNewItem}
     listvalue2={listvalue2}
     setlistvalue2={setlistvalue2}
-
     />
+
+    <Searchitems 
+    searchitem={searchitem}
+    setsearchitem={setsearchitem}
+    />
+ 
+
     <Content 
     list = {list}
     handleChenge={handleChenge}
     handleDelete={handleDelete}
-
     />
     <Footer 
     length={list.length}
