@@ -5,7 +5,7 @@ import ListItem from "./ListItem";
 
 const Content = ({list,handleChenge,handleDelete}) => {
     return (
-        <div className='w-screen h-full bg-yellow-500'>
+        <div className='w-screen h-full bg-yellow-500 mt-7'>
             {list.length ? 
             ( 
                 <ListItem 
