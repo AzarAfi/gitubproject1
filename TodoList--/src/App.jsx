@@ -12,6 +12,7 @@ const [list, setList] = useState(JSON.parse(localStorage.getItem('totolist')));
 const [listvalue,setlistvalue]=useState("");
 const [listvalue2,setlistvalue2]=useState("");
 const [searchitem,setsearchitem]=useState("");
+const [searchitem2,setsearchitem2]=useState("");
 
 
 function additems(Actor,Movie){
@@ -58,11 +59,13 @@ function addNewItem(e){
     <Searchitems 
     searchitem={searchitem}
     setsearchitem={setsearchitem}
+    searchitem2={searchitem}
+    setsearchitem2={setsearchitem}
     />
  
 
     <Content 
-    list = {list}
+    list = {list.filter(item => ((item.Actor),(item.Movie).toLowerCase()).includes(searchitem.toLocaleLowerCase(),searchitem2.toLocaleLowerCase()))}
     handleChenge={handleChenge}
     handleDelete={handleDelete}
     />
