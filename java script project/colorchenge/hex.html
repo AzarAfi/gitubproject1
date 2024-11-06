@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colur chenge</title>
+</head>
+<body>
+    <nav class="frend">
+        <h1>colur chenge</h1>
+        <h2><a href="colurchenge.html">simple</a></h2>
+        <h3><a href="hex.html">hex</a></h3>
+    </nav>
+    <div class="bgcolur">
+        <h1>backgroundcolor: <div id="colurs"></div></h1>
+    </div>
+    <button id="cbtn">clickme</button>
+    <style>
+        body{
+            color: #abe;
+        }
+        .frend{
+            display: flex;
+            justify-content: space-evenly;
+            border: 3px solid black;
+        }
+        a{
+            text-decoration: none;
+            color:#abe;
+        }
+        .bgcolur{
+          position: fixed;
+          right: 50%;
+          top: 45%;
+        }
+        #cbtn{
+            padding: 7px 20px 7px 20px;
+            position: fixed;
+            top:55%;
+            left: 50%;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let hex=[0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+        let cbtn=document.getElementById("cbtn");
+        let colurs=document.getElementById("colurs");
+       
+        cbtn.addEventListener("click",function(){
+           let hexcol="#";
+           for(let i=0;i<6;i++)
+           {
+            hexcol += hex[rand()]
+           }
+           colurs.textContent=hexcol;
+           document.body.style.backgroundColor=hexcol;
+        })
+
+        function rand(){
+           return  Math.floor(Math.random()*hex.length);
+        }
+    </script>
+    
+</body>
+</html>

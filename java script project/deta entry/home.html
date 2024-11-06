@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deta Entry</title>
+    <link rel="stylesheet" href="sty.css">
+</head>
+<body>
+    <section class="fromcon">
+      <h1>your Deta</h1>
+      <div class="box">Name: <input type="text" id="nam" class="inbox"></div>     
+      <div class="box">Age: <input type="text" id="age" class="inbox"></div>
+      <div class="box">Genter: <input type="text" id="genter" class="inbox"></div>
+      <div class="box">Phone No: <input type="number" id="pno" class="inbox"></div>
+      <div class="box">Email: <input type="email" id="eml" class="inbox"></div>
+    <center> <button onclick="ok()" id="save">ok</button></center>
+    </section>
+
+    <section class="resultbox">
+        <ul class="headbox">
+
+            <li><h1>Name</h1>
+            <ul id="res" class="resbox">
+            </ul>
+            </li>
+
+            <li><h1>Age</h1>
+            <ul id="res1" class="resbox">
+            </ul>
+            </li>
+
+            <li><h1>Genter</h1>
+            <ul id="res2" class="resbox"></ul>
+            </li>
+
+            <li><h1>PhoneNo</h1>
+            <ul id="res3" class="resbox"></ul>
+            </li>
+
+            <li><h1>Email</h1>
+            <ul id="res4" class="resbox"></ul>
+            </li>  
+
+            <li><h1>Delete</h1>
+            <ul id="res5" class="resbox"></ul>
+            </li> 
+
+        </ul>
+    </section>
+    <script>
+    var nam=document.getElementById("nam")
+    var age=document.getElementById("age")
+    var gen=document.getElementById("genter")
+    var pno=document.getElementById("pno")
+    var eml=document.getElementById("eml")
+    let rbox=document.querySelector(".resultbox");
+    let hbox=document.querySelector(".headbox")
+    
+    function ok()
+    {
+        var add=document.createElement("li")
+        add.textContent=nam.value
+        res.append(add)
+
+        var add1=document.createElement("li")
+        add1.textContent=age.value
+        res1.append(add1)
+
+        var add2=document.createElement("li")
+        add2.textContent=gen.value
+        res2.append(add2)
+
+        var add3=document.createElement("li")
+        add3.textContent=pno.value
+        res3.append(add3)
+
+        var add4=document.createElement("li")
+        add4.textContent=eml.value
+        res4.append(add4)
+
+        var add5=document.createElement("li")
+        add5.innerHTML=`<button onclick="del(event)">delete</button>`
+        res5.append(add5)
+    }
+    function del(event)
+    {
+        let ele=elament
+        let elament=event.currentTarget.closest(".resbox"); 
+       hbox.remove(elament);
+    }
+    </script>
+</body>
+</html>

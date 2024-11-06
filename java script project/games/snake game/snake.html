@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="app.js"></script>
+    <title>snake Game</title>
+</head>
+<body>
+    <div class="snake">
+        <h1>snake game</h1>
+        <canvas id="gamebored" width="500" height="500"></canvas>
+        <h2>SCORE: <span class="scoretext">0</span></h2>
+        <button class="retry">Retry</button>
+        <div class="btncon">
+            <button class="btns" id="easy">Easy</button><button class="btns" id="normal">Normal</button><button class="btns" id="hard">Hard</button>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    
+    body{
+        background-color: bisque;
+
+    }
+    .snake{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    #gamebored{
+        border: 5px green solid;
+    }
+    .retry{
+        padding: 7px 20px;
+        background-color: bisque;
+        position: absolute;
+        top:50%;
+        cursor: pointer;
+        transition: all 1s;
+        display: none;
+    }
+    .retry:hover{
+        background-color: aqua;
+        transform: scale(1.2);
+    }
+    .btncon{
+        display: none;
+    }
+ 
+    .btns{
+        padding: 7px 20px;
+        margin: 10px;
+        background-color: aqua;
+        
+    }
+    .addbtn{
+        display: block;
+        
+    }
+    .btns:hover{
+        background-color:yellowgreen;
+        transform: scale(1.2);
+    }
+
+</style>

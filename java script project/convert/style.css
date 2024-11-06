@@ -1,0 +1,40 @@
+body{
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #050A44;
+    color: yellow;
+    text-align: center;
+
+}
+.Currencytextbox{
+    padding: 10px 20px;
+    font-size:1.3rem;
+}
+.maincon{
+    height:400px;
+    width:40%;
+    border: white 3px solid;
+   display: flex;
+   flex-direction: column;
+   justify-content:space-evenly;
+   padding: 3rem;
+}
+.inputboxcon input{
+    padding: 10px 20px;
+}
+.convert{
+    padding: 10px 20px;
+    background-color: #b3b4bd;
+    color: yellow;
+    transition: all 0.3S;
+    cursor: pointer;
+    
+}
+.convert:hover{
+    background-color: yellow;
+    color: #b3b4bd;
+    transform: scale(0.8);
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counder</title>
+</head>
+<body>
+    <div class="maincon">
+    <h1>counter</h1>
+    <h2 id="value">0</h2>
+    <div class="btn-con">
+        <button class="btn decrese">decrese</button>
+        <button class="btn reset">reset</button>
+        <button class="btn increse">increse</button>
+
+    </div>
+</div>
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100%;
+        height: 100vh;
+    }
+    .maincon{
+        background-color: bisque;
+        border: 3px solid black;
+        display: inline-block;
+        padding: 30px;
+        border-radius: 30px;
+    }
+    h1{
+        padding:35px;
+        display: flex;
+        justify-content: center;
+    }
+    #value{
+        display: flex;
+        justify-content: center;
+        font-size:4rem;
+    }
+    .btn{
+        padding: 7PX 20PX 7PX 20PX;
+        background-color: aquamarine;
+        border-radius: 15px;
+        margin: 20px;
+    }
+    .btn:hover{
+        transform: scale(1.2);
+    }
+
+
+</style>
+<script>
+    let count=0;
+    let value=document.getElementById("value")
+    let btns=document.querySelectorAll(".btn")
+    btns.forEach(function(con){
+        con.addEventListener('click',function(eve){
+       let con1=eve.currentTarget.classList
+       
+        if(con1.contains("decrese")){
+            count--;
+        }
+        else if(con1.contains("increse")){
+            count++;
+        }
+        else if(con1.contains("reset")){
+            count=0;
+        }
+        else{
+            false
+        }
+        value.textContent=count;
+
+        if(count<0){
+        document.body.style.color="red"
+    }
+    else if(count>0){
+        document.body.style.color="green"
+    }
+    else if(count==0){
+        document.body.style.color="black"
+    }
+    })
+  
+    })
+   
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+body{
+    background-color: bisque;
+    text-align: center;
+}
+.game{
+    display: grid;
+    grid-template-columns: repeat(4,120px);
+    text-align: center;
+    justify-content: center;
+    grid-gap: 2rem;
+}
+.cardback{
+    height:170px;
+    width: 120px;
+    border: black 3px solid;
+
+
+        background: repeating-linear-gradient(
+            45deg, /* Diagonal stripes */
+            #f06, /* First stripe color */
+            #f06 10px, /* Stripe size */
+            #fff 10px, /* Space between stripes */
+            #fff 20px
+        );
+     
+}
+.game div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background-color:white;
+    color: #f06;
+    border: black 2px solid;
+}
+.youwin{
+    display:flex;
+    height:500px;
+    font-size: 5rem;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+
+}
+.tryagine{
+    position: absolute;
+    top:50%;
+    left: 46%;
+    padding: 7px 20px;
+    background-color: #f06;
+    font-size: 1.5rem;
+    color:white;
+    border:none;
+    cursor: pointer;
+    transition: all 0.5s;
+    visibility:hidden;
+}
+.tryagine:hover{
+    transform: scale(1.2);
+    background-color: white;
+    color: #f06;
+}
+.showbtn{
+    visibility: visible;
+}

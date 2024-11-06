@@ -1,0 +1,101 @@
+/* reset Page */
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 109vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    background-color:gray;
+}
+h1{
+    position: absolute;
+    top: 40px;
+    color: white;
+}
+h2{
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+.main-con{
+    display: flex;
+flex-flow: column wrap;
+border:3px solid white;
+width:40%;
+padding: 3rem;
+}
+.listcon{
+    border: 2px white solid;
+
+}
+.grocerylist{
+    visibility: hidden;
+}
+.additem{
+    visibility: visible;
+}
+.listitem{
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    background-color: white;
+    padding: 1rem;
+   
+}
+.clrbtn{
+    width:100%;
+    padding:8px;
+    background-color:transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+.inputbox{
+    margin-bottom: 2rem;
+    text-align: center;
+}
+#inputarea{
+    padding: 8px;
+}
+.addbtn{
+    padding: 8px 20px;
+    margin-left: 1rem;
+    background-color: transparent;
+    border: white 2px solid;
+    cursor: pointer;
+    color: white;
+}
+label{
+    font-size: 2rem;
+    color: white;
+}
+.editbtn,.deletebtn{
+    font-size: 1.2rem;
+    border: none;
+    background-color:transparent;
+    cursor: pointer;
+}
+.alart{
+   font-size: 2rem;
+   text-align: center;
+   margin-bottom: 2rem;
+   width:100%;
+   background-color: white;
+}
+.alart-red{
+    background-color: hsla(0, 100%, 50%, 0.575);
+    color: white;
+}
+.alart-green{
+    background-color: rgba(0, 128, 0, 0.774);
+    color:white;
+}
