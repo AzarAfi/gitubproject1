@@ -1,48 +1,73 @@
 import { useEffect, useState } from 'react'
+import AddNewUser from './AddNewUser';
 
 function App() {
+
+  //***********Using Hook
   const [user, setUser] = useState([]);
   const [Uname, setUname] = useState("");
   const [Uemail, setUemail] = useState("");
   const [Uwebsite, setUwebsite] = useState("");
 
-  // Function to add a new user
-  function addNewUser() {
-    let username = Uname.trim();
-    let useremail = Uemail.trim();
-    let userwebsite = Uwebsite.trim();
 
-    if (!username || !useremail || !userwebsite) {
-      alert("Please fill in all fields!");
-      return;
+// ************functions
+ 
+// 1.Get Edit the Elament
+
+
+ function Editcontent(id,key,values){
+  const newValue = values.target.value;
+  setUser((user)=>{ 
+    return user.map(user=>
+  {
+     return user.id === id ? {...user,[key]:newValue}:user;
+  })
+})
+ }
+
+
+
+ // 2.Update the after Edit Elament
+
+
+function updateUser(id){
+  const checkuser=user.find((user)=> user.id === id);
+  fetch("https://jsonplaceholder.typicode.com/users/10", {
+    method: "PUT",
+    body: JSON.stringify(checkuser),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
     }
-
-    fetch("https://jsonplaceholder.typicode.com/users", {
-      method: "POST",
-      body: JSON.stringify({
-        name: username,
-        email: useremail,
-        website: userwebsite
-      }),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8"
-      }
+  })
+    .then((response) => response.json()) 
+    .then((data) => {
+     setTimeout(() => {
+      alert("user update suess")
+     }, 1000); 
     })
-      .then((response) => response.json()) // Fix the typo here
-      .then((data) => {
-        setUser([...user, data]);
+}
 
-       setTimeout(() => {
-        alert("user add suess")
-       }, 2000); 
-        setUname(""); // Clear form after adding user
-        setUemail("");
-        setUwebsite("");
-      })
-      .catch((error) => {
-        console.error("Error adding user:", error);
-      });
-  }
+// 3. Delete the elament
+
+function deleteUser(id){
+  fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json()) 
+    .then((data) => {
+
+      setUser((user)=>{
+        
+        return user.filter( user=> user.id !== id)}
+      
+      )
+     setTimeout(() => {
+      alert("delete user sesses")
+     }, 1000); 
+    })
+
+}
+
 
   // Fetch initial user data on component mount
   useEffect(() => {
@@ -54,7 +79,7 @@ function App() {
   return (
     <>
       <main className="flex justify-center mt-10 w-screen h-full">
-        <table className="w-1/2">
+        <table className="w-fit">
           <thead>
             <tr>
               <th>Id</th>
@@ -68,13 +93,13 @@ function App() {
             {user.map((userDetails) => (
               <tr key={userDetails.id}>
                 <td>{userDetails.id}</td>
-                <td>{userDetails.name}</td>
-                <td>{userDetails.email}</td>
-                <td>{userDetails.website}</td>
+                <td><input type="text" value={userDetails.name} onChange={value => Editcontent(userDetails.id,"name",value)} className="border-4 border-black p-3"/></td>
+                <td><input type="text" value={userDetails.email} onChange={value => Editcontent(userDetails.id,"email",value)} className="border-4 border-black p-3"/></td>
+                <td><input type="text" value={userDetails.website} onChange={value => Editcontent(userDetails.id,"website",value)}className="border-4 border-black p-3"/></td>
                 <td>
                   {/* Placeholder buttons for edit & delete */}
-                  <button className="border-2 px-3 py-1 bg-blue-500 text-white">Edit</button>
-                  <button className="border-2 px-3 py-1 bg-red-500 text-white ml-2">Delete</button>
+                  <button className="border-2 px-3 py-1 bg-blue-500 text-white" onClick={()=>updateUser(userDetails.id)}>Edit</button>
+                  <button className="border-2 px-3 py-1 bg-red-500 text-white ml-2" onClick={()=>deleteUser(userDetails.id)}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -113,12 +138,23 @@ function App() {
               </td>
 
               <td>
-                <button
-                  className="border-4 border-black bg-green-600 px-5 py-2"
-                  onClick={addNewUser}
-                >
-                  Add user
-                </button>
+
+                {/* Using Compounent from Add New  */}
+
+                <AddNewUser 
+                user={user}
+                setUser={setUser}
+
+                Uname={Uname}
+                setUname={setUname}
+
+                Uemail={Uemail}
+                setUemail={setUemail}
+
+                Uwebsite={Uwebsite}
+                setUwebsite={setUwebsite}
+                />
+
               </td>
             </tr>
           </tfoot>
