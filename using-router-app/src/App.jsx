@@ -9,30 +9,20 @@ import NewPost from "./NewPost"
 import {format} from "date-fns"
 import About from "./About"
 import Postview from "./Postview"
+import api from "./api/post"
+import Editpost from "./Editpost"
 
 
 
 function App() {
 
-  const[posts,setposts]=useState([
-    { id: 1, name: "John Doe", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Loves playing soccer." },
-    { id: 2, name: "Jane Smith", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Enjoys hiking and photography." },
-    { id: 3, name: "Alice Brown", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Avid reader and book collector." },
-    { id: 4, name: "Bob Johnson", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Guitar player in a local band." },
-    { id: 5, name: "Charlie Davis", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Tech enthusiast and gamer." },
-    { id: 6, name: "David White", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Loves traveling the world." },
-    { id: 7, name: "Eva Green", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Passionate about painting and art." },
-    { id: 8, name: "Frank Miller", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Works as a software engineer." },
-    { id: 9, name: "Grace Lee", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Fitness junkie and yoga practitioner." },
-    { id: 10, name: "Hannah Scott", dob: "Monday, November 8, 2024, 01:34:56 PM", comment: "Enjoys cooking and baking desserts." }
-  ]
-      
-  )
-
+  const[posts,setposts]=useState([])
   const[postval,setpostval]=useState("")
   const[searchres,setsearchres]=useState([])
   const[newpost1,setnewpost1]=useState("")
   const[newpost2,setnewpost2]=useState("")
+  const[editname,seteditname]=useState("")
+  const[editcomment,seteditcomment]=useState("")
   const navicate =useNavigate()
  
 useEffect(()=>{
@@ -44,13 +34,38 @@ useEffect(()=>{
 },[posts,postval]) 
 
 
+useEffect(()=>{
+  const fetchdeta = async () =>{
+    try{
+      const responce = await api.get("/posts")
+      setposts(responce.data)
+
+    }catch(err){
+      if(err.responce){
+        console.log(err.responce.status)
+        console.log(err.responce.data)
+        console.log(err.responce.headers)
+      }
+      else{
+        console.log(`Errorbhai:${err.message}`);
+      }
+    }
+    
+  }
+  fetchdeta()
+},[])
+
+
   
-  function handleformsubmit(e){
+const handleformsubmit = async (e) =>{
     e.preventDefault();
   const id=posts.length ? posts[posts.length-1].id+1:1;
   const datetime = format(new Date(), "EEEE, MMMM dd, yyyy, hh:mm:ss a");
   const newpost={id,name:newpost1,dob:datetime,comment:newpost2}
-  const updatepost=[...posts,newpost]
+
+  try{
+    const responce = await api.post("/posts",newpost)
+  const updatepost=[...posts,responce.data]
   setposts(updatepost)
   setnewpost1("")
   setnewpost2("")
@@ -58,15 +73,51 @@ useEffect(()=>{
     alert("add post suess")
   },1000);
   navicate("/")
+    
+  }catch{
+    if(err.responce){
+      console.log(err.responce.status)
+      console.log(err.responce.data)
+      console.log(err.responce.headers)
+    }
+    else{
+      console.log(`Errorbhai:${err.message}`);
+    }
+
+  }
+  
 } 
 
-function handleDelete(id){
-  const postid= posts.filter(post=> post.id !== id);
-  
-  setposts(postid)
-  navicate("/")
-
+const handleDelete = async (id) => {
+  try {
+    await api.delete(`posts/${id}`);
+    const updatedPosts = posts.filter(post => post.id !== id);
+    setposts(updatedPosts); 
+    navicate("/"); 
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
 }
+const handleEdit= async (id)=>{
+  const datetime = format(new Date(), "EEEE, MMMM dd, yyyy, hh:mm:ss a");
+  const editpost={id,name:editname,dob:datetime,comment:editcomment}
+  try{
+    const responce=await api.put(`/posts/${id}`,editpost)
+    setposts(posts.map(post => post.id === id ? {... responce.data}: post))
+    seteditname("")
+    seteditcomment("")
+    setTimeout(() => {
+      alert("edit post sueuess")
+    },1000);
+    navicate("/")
+  }
+  catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+  
+ 
+}
+
 
 
   return (
@@ -97,11 +148,21 @@ function handleDelete(id){
                                                                               />}/>
     <Route path=":id" element={<Postview 
                                   posts={posts}
-                                  handleDelete={handleDelete}/>}/>
+                                  handleDelete={handleDelete}
+                                  />}/>
 
     </Route>
    
   <Route path="*" element={<Missing/>}/>
+
+  <Route path="/editpost/:id" element={<Editpost
+  editname={editname}
+  seteditname={seteditname}
+  editcomment={editcomment}
+  seteditcomment={seteditcomment}
+  handleEdit={handleEdit}
+  posts={posts}
+  />}/>
 
 
   

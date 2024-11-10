@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,Link} from 'react-router-dom'
 import Missing from './Missing';
 
 
@@ -16,7 +16,10 @@ const Postview = ({posts,handleDelete}) => {
       <h1>{post.name}</h1>
       <h2>{post.dob}</h2>
       <p>{post.comment}</p>
-      <button onClick={()=>handleDelete(post.id)} className='bg-green-700 text-white px-4 py-2 hover:bg-gray-700'>Delete</button>
+
+      <Link to={`/editpost/${post.id}`}>
+      <button className='bg-green-900 text-white px-4 py-2 hover:bg-gray-700 mb-4'>Edit</button></Link>
+      <button onClick={()=>handleDelete(post.id)} className='bg-red-900 text-white px-4 py-2 hover:bg-gray-700'>Delete</button>
     </article>
     
     }
